@@ -421,53 +421,6 @@ class MetricClient {
    * @return Boolean indicating if the server is available
    */
   Boolean pingInfluxDB() {
-/**    
-    Boolean status = false
-    String basicAuth
-    String response
-    String version
-    HttpURLConnection con
-
-    try {
-      if (server_auth?.contains(':')) {
-        basicAuth = "${server_auth?.split(':')?.getAt(0)}:${server_auth?.split(':')?.getAt(1)}".getBytes().encodeBase64().toString()
-      }
-
-      URL url = new URL("http://${server_host}:${server_port}/ping")
-      con = url.openConnection()
-      con.setRequestProperty('Accept', 'application/json; charset=UTF-8')
-      con.setRequestProperty('User-Agent', 'MetricClient')
-      if (basicAuth) {
-        con.setRequestProperty('Authorization', "Basic ${basicAuth}")
-      }
-      con.setRequestMethod('GET')
-      con.useCaches = false
-      con.readTimeout = http_readTimeout // ms
-      con.connectTimeout = http_connectTimeout // ms
-      con.allowUserInteraction = false
-
-      con.connect()
-      response = con?.getResponseMessage()?.trim()
-      version = con?.getHeaderField('X-InfluxDB-Version') ?: ''
-
-      if (con?.responseCode == HttpURLConnection.HTTP_NO_CONTENT) {
-        // TODO: Improve the ping check when the new ping handler is completed
-        status = true
-      } else { status = false }
-
-    } catch(Exception e) {
-      StackTraceUtils.deepSanitize(e)
-      log.error "Ping InfluxDB: ${status ? 'OK' : 'Failed'} ${version} (${response}) : ${e?.message}"
-      log.debug "Ping InfluxDB: ${getStackTrace(e)}"
-    }
-
-    if (status) {
-      log.info "Ping InfluxDB: ${status ? 'OK' : 'Failed'} ${version}"
-    } else {
-      log.error "Ping InfluxDB: ${status ? 'OK' : 'Failed'} ${version} (${response})"
-    }
-    return status
-*/
     return true
   }
 
